@@ -1,20 +1,76 @@
 package com.DariusO.Songr2;
 
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 
 public class Album {
-    @GetMapping("/album/{name}")
-    public String albumModel(@PathVariable String name, Model modVarible) {
-        MyModal model = new MyModal();
-        MyModal.title = "title";
-        MyModal.artist = "artist";
-        MyModal.songCount = 12;
-        MyModal.albumLengthSeconds = 10500;
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+long id;
+    private String title;
+    private String artist;
+    private   int songCount;
+    private  double albumLengthSeconds;
 
-        modVarible.addAttribute("model", model);
-        return "album";
+    private String imgUrl;
+
+    public Album(String title, String artist, int songCount, double albumLengthSeconds, String imgUrl) {
+        this.title = title;
+        this.artist = artist;
+        this.songCount = songCount;
+        this.albumLengthSeconds = albumLengthSeconds;
+        this.imgUrl = imgUrl;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public int getSongCount() {
+        return songCount;
+    }
+
+    public void setSongCount(int songCount) {
+        this.songCount = songCount;
+    }
+
+    public double getAlbumLengthSeconds() {
+        return albumLengthSeconds;
+    }
+
+    public void setAlbumLengthSeconds(double albumLengthSeconds) {
+        this.albumLengthSeconds = albumLengthSeconds;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 }
